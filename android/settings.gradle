@@ -1,0 +1,3 @@
+rootProject.name = 'consuLimp'
+
+include ':app'
