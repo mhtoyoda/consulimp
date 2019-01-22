@@ -16,27 +16,27 @@ const AppNavigator = createStackNavigator({
   },
   Geral: {
     screen: Geral, navigationOptions: ({ navigation }) => ({
-      title: 'Auditoria Geral',
+      title: 'Auditoria de Processos - Geral',
     }),
   },
   Supervisores: {
     screen: Supervisores, navigationOptions: ({ navigation }) => ({
-      title: 'Auditoria Supervisores',
+      title: 'Auditoria de Supervisores',
     }),
   },
   Educacao: {
     screen: Educacao, navigationOptions: ({ navigation }) => ({
-      title: 'Auditoria Educação',
+      title: 'Auditoria de Processos - Educação',
     }),
   },
   Condominio: {
     screen: Condominio, navigationOptions: ({ navigation }) => ({
-      title: 'Auditoria Condomínio',
+      title: 'Auditoria de Processos - Condomínios',
     }),
   },
   Saude: {
     screen: Saude, navigationOptions: ({ navigation }) => ({
-      title: 'Auditoria Saúde',
+      title: 'Auditoria de Processos - Saúde',
     }),
   },
 }, {

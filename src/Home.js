@@ -15,27 +15,27 @@ export default class Home extends Component {
                     <TouchableOpacity style={styles.button} onPress={() => {
                         this.props.navigation.navigate({ routeName: 'Geral' })
                     }}>
-                        <Text style={styles.textButton}>Auditoria Geral</Text>
+                        <Text style={styles.textButton}>Auditoria de Processos - Geral</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button} onPress={() => {
                         this.props.navigation.navigate({ routeName: 'Condominio' })
                     }}>
-                        <Text style={styles.textButton}>Auditoria Condomínio</Text>
+                        <Text style={styles.textButton}>Auditoria de Processos - Condomínios</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button} onPress={() => {
                         this.props.navigation.navigate({ routeName: 'Supervisores' })
                     }}>
-                        <Text style={styles.textButton}>Auditoria Supervisores</Text>
+                        <Text style={styles.textButton}>Auditoria de Supervisores</Text>
                     </TouchableOpacity >
                     <TouchableOpacity style={styles.button} onPress={() => {
                         this.props.navigation.navigate({ routeName: 'Saude' })
                     }}>
-                        <Text style={styles.textButton}>Auditoria Saúde</Text>
+                        <Text style={styles.textButton}>Auditoria de Processos - Saúde</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button} onPress={() => {
                         this.props.navigation.navigate({ routeName: 'Educacao' })
                     }}>
-                        <Text style={styles.textButton}>Auditoria Educação</Text>
+                        <Text style={styles.textButton}>Auditoria de Processos - Educação</Text>
                     </TouchableOpacity>
                 </View >
             </View >
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#00009C',
         padding: 10,
-        marginBottom: 10,
+        marginBottom: 15,
         borderRadius: 30,
     },
     textButton: {
