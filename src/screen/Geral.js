@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TextInput, ScrollView, FlatList, TouchableOpacity, ToastAndroid } from 'react-native';
-import { AirbnbRating } from 'react-native-ratings';
+import Rating from '../components/Rating';
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
 export default class Geral extends Component {
 
@@ -10,7 +12,7 @@ export default class Geral extends Component {
             cliente: '',
             posto: '',
             supervisor: '',
-            data: '',
+            data: moment().locale('pt-br').format('L'),
             geral: [
                 { "id": 1, "name": "Administração", "nota": 0 },
                 { "id": 2, "name": "Ar Condicionado-Grelhas", "nota": 0 },
@@ -48,10 +50,23 @@ export default class Geral extends Component {
                 { "id": 9, "name": "Uniformes", "nota": 0 }
             ]
         };
+        this.salvarAuditoria = this.salvarAuditoria.bind(this);
     }
 
-    ratingCompleted(rating) {
-        ToastAndroid.show(`Rating selecionado: ${rating}`, ToastAndroid.SHORT);
+    salvarAuditoria() {        
+        if(this.state.cliente === ''){
+            ToastAndroid.show('Campo Cliente Obrigatório!', ToastAndroid.LONG);
+            return;
+        }
+        if(this.state.posto === ''){
+            ToastAndroid.show('Campo Posto Obrigatório!', ToastAndroid.LONG);
+            return;
+        }
+        if(this.state.supervisor === ''){
+            ToastAndroid.show('Campo Supervisor Obrigatório!', ToastAndroid.LONG);
+            return;
+        }
+        console.warn(this.state);
     }
 
     render() {
@@ -70,18 +85,16 @@ export default class Geral extends Component {
                     <TextInput style={{ height: 40 }} value={this.state.supervisor} onChangeText={(text) => this.setState({ supervisor: text })}></TextInput>
                 </View>
                 <View>
-                    <Text style={styles.text_field}>Data:</Text>
-                    <TextInput style={{ height: 40 }} value={this.state.data} onChangeText={(text) => this.setState({ data: text })}></TextInput>
+                    <Text style={styles.text_field}>Data:</Text>                    
+                    <TextInput style={{ height: 40 }} value={this.state.data} editable = {false}></TextInput>
                 </View>
                 <View>
                     <FlatList
                         keyExtractor={item => item.id.toString()}
                         data={this.state.geral}
+                        extraData={this.state}
                         renderItem={({ item, index }) =>
-                            <View style={styles.item}>
-                                <Text style={styles.text}>{item.name}</Text>
-                                <AirbnbRating count={4} defaultRating={0} reviews={['Ruim', 'Regular', 'Bom', 'Ótimo']} size={25} onFinishRating={this.ratingCompleted}></AirbnbRating>
-                            </View>
+                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>                            
                         }
                     />
                 </View>
@@ -92,17 +105,15 @@ export default class Geral extends Component {
                     <FlatList
                         keyExtractor={item => item.id.toString()}
                         data={this.state.geral_equipe}
-                        renderItem={({ item, index }) =>
-                            <View style={styles.item}>
-                                <Text style={styles.text}>{item.name}</Text>
-                                <AirbnbRating count={4} defaultRating={0} reviews={['Ruim', 'Regular', 'Bom', 'Ótimo']} size={25}></AirbnbRating>
-                            </View>
+                        extraData={this.state}
+                        renderItem={({ item }) =>
+                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>                            
                         }
                     />
                 </View>
-                <View>
-                    <TouchableOpacity style={styles.button} onPress={() => { console.warn(this.state) }}>
-                        <Text>Salvar Auditoria</Text>
+                <View style={styles.containerButton}>
+                    <TouchableOpacity style={styles.button} onPress={this.salvarAuditoria}>
+                        <Text style={styles.textButton}>Salvar Auditoria</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView >
@@ -141,13 +152,15 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         backgroundColor: '#00009C',
-        padding: 10,
-        paddingTop: 15,
-        marginBottom: 15,
+        padding: 10,        
         borderRadius: 30,
     },
     textButton: {
         fontSize: 16,
         color: '#FFF'
+    },
+    containerButton: {
+        paddingTop: 20,
+        paddingBottom: 20,
     }
 });

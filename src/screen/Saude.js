@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TextInput, ScrollView, FlatList } from 'react-native';
-import { AirbnbRating } from 'react-native-ratings';
+import { StyleSheet, View, Text, TextInput, ScrollView, FlatList, TouchableOpacity, ToastAndroid } from 'react-native';
+import Rating from '../components/Rating';
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
 export default class Saude extends Component {
 
@@ -10,7 +12,7 @@ export default class Saude extends Component {
             cliente: '',
             posto: '',
             supervisor: '',
-            data: '',
+            data: moment().locale('pt-br').format('L'),
             saude: [
                 { "id": 1, "name": "Administração", "nota": 0 },
                 { "id": 2, "name": "Área Interna", "nota": 0 },
@@ -51,6 +53,23 @@ export default class Saude extends Component {
                 { "id": 9, "name": "Uniformes", "nota": 0 }
             ]
         };
+        this.salvarAuditoria = this.salvarAuditoria.bind(this);
+    }
+
+    salvarAuditoria() {
+        if (this.state.cliente === '') {
+            ToastAndroid.show('Campo Cliente Obrigatório!', ToastAndroid.LONG);
+            return;
+        }
+        if (this.state.posto === '') {
+            ToastAndroid.show('Campo Posto Obrigatório!', ToastAndroid.LONG);
+            return;
+        }
+        if (this.state.supervisor === '') {
+            ToastAndroid.show('Campo Supervisor Obrigatório!', ToastAndroid.LONG);
+            return;
+        }
+        console.warn(this.state);
     }
 
     render() {
@@ -70,17 +89,15 @@ export default class Saude extends Component {
                 </View>
                 <View>
                     <Text style={styles.text_field}>Data:</Text>
-                    <TextInput style={{ height: 40 }} onChangeText={text => this.setState({ data: text })}></TextInput>
+                    <TextInput style={{ height: 40 }} value={this.state.data} editable={false}></TextInput>
                 </View>
                 <View>
                     <FlatList
                         keyExtractor={item => item.id.toString()}
                         data={this.state.saude}
+                        extraData={this.state}
                         renderItem={({ item }) =>
-                            <View style={styles.item}>
-                                <Text style={styles.text}>{item.name}</Text>
-                                <AirbnbRating count={4} defaultRating={0} reviews={['Ruim', 'Regular', 'Bom', 'Ótimo']} size={25}></AirbnbRating>
-                            </View>
+                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>
                         }
                     />
                 </View>
@@ -91,13 +108,16 @@ export default class Saude extends Component {
                     <FlatList
                         keyExtractor={item => item.id.toString()}
                         data={this.state.saude_equipe}
+                        extraData={this.state}
                         renderItem={({ item }) =>
-                            <View style={styles.item}>
-                                <Text style={styles.text}>{item.name}</Text>
-                                <AirbnbRating count={4} defaultRating={0} reviews={['Ruim', 'Regular', 'Bom', 'Ótimo']} size={25}></AirbnbRating>
-                            </View>
+                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>
                         }
                     />
+                </View>
+                <View style={styles.containerButton}>
+                    <TouchableOpacity style={styles.button} onPress={this.salvarAuditoria}>
+                        <Text style={styles.textButton}>Salvar Auditoria</Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         );
@@ -131,5 +151,20 @@ const styles = StyleSheet.create({
     text_field: {
         fontWeight: 'bold',
         marginTop: 5,
+    },
+    button: {
+        alignItems: 'center',
+        backgroundColor: '#00009C',
+        padding: 10,
+        borderRadius: 30,
+    },
+    textButton: {
+        fontSize: 16,
+        color: '#FFF'
+    },
+    containerButton: {
+        paddingTop: 20,
+        paddingBottom: 20,
     }
 });
+

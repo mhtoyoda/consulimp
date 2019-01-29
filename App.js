@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
-import Home from './src/Home';
-import Geral from './src/Geral';
-import Educacao from './src/Educacao';
-import Condominio from './src/Condominio';
-import Saude from './src/Saude';
-import Supervisores from './src/Supervisores';
+import Home from './src/screen/Home';
+import Geral from './src/screen/Geral';
+import Educacao from './src/screen/Educacao';
+import Condominio from './src/screen/Condominio';
+import Saude from './src/screen/Saude';
+import Supervisores from './src/screen/Supervisores';
 
 const AppNavigator = createStackNavigator({
   Home: {
