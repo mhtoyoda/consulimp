@@ -38,15 +38,15 @@ export default class Educacao extends Component {
                 { "id": 22, "name": "Vestiários", "nota": 0 }
             ],
             educacao_equipe: [
-                { "id": 1, "name": "Acessórios/ Equipamentos", "nota": 0 },
-                { "id": 2, "name": "Crachá", "nota": 0 },
-                { "id": 3, "name": "EPI's", "nota": 0 },
-                { "id": 4, "name": "Produtos - Diluição", "nota": 0 },
-                { "id": 5, "name": "Produtos - Gestão de Estoques", "nota": 0 },
-                { "id": 6, "name": "Postura Profissional", "nota": 0 },
-                { "id": 7, "name": "Qualidade Operacional", "nota": 0 },
-                { "id": 8, "name": "Relacionamento / Cliente", "nota": 0 },
-                { "id": 9, "name": "Uniformes", "nota": 0 }
+                { "id": 23, "name": "Acessórios/ Equipamentos", "nota": 0 },
+                { "id": 24, "name": "Crachá", "nota": 0 },
+                { "id": 25, "name": "EPI's", "nota": 0 },
+                { "id": 26, "name": "Produtos - Diluição", "nota": 0 },
+                { "id": 27, "name": "Produtos - Gestão de Estoques", "nota": 0 },
+                { "id": 28, "name": "Postura Profissional", "nota": 0 },
+                { "id": 29, "name": "Qualidade Operacional", "nota": 0 },
+                { "id": 30, "name": "Relacionamento / Cliente", "nota": 0 },
+                { "id": 31, "name": "Uniformes", "nota": 0 }
             ]
         };
         this.salvarAuditoria = this.salvarAuditoria.bind(this);

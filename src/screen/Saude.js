@@ -42,15 +42,15 @@ export default class Saude extends Component {
                 { "id": 26, "name": "UTI - NEO", "nota": 0 }
             ],
             saude_equipe: [
-                { "id": 1, "name": "Acessórios/ Equipamentos", "nota": 0 },
-                { "id": 2, "name": "Crachá", "nota": 0 },
-                { "id": 3, "name": "EPI's", "nota": 0 },
-                { "id": 4, "name": "Postura Profissional", "nota": 0 },
-                { "id": 5, "name": "Produtos - Diluição", "nota": 0 },
-                { "id": 6, "name": "Produtos - Gestão de Estoques", "nota": 0 },
-                { "id": 7, "name": "Qualidade Operacional", "nota": 0 },
-                { "id": 8, "name": "Relacionamento / Cliente", "nota": 0 },
-                { "id": 9, "name": "Uniformes", "nota": 0 }
+                { "id": 27, "name": "Acessórios/ Equipamentos", "nota": 0 },
+                { "id": 28, "name": "Crachá", "nota": 0 },
+                { "id": 29, "name": "EPI's", "nota": 0 },
+                { "id": 30, "name": "Postura Profissional", "nota": 0 },
+                { "id": 31, "name": "Produtos - Diluição", "nota": 0 },
+                { "id": 32, "name": "Produtos - Gestão de Estoques", "nota": 0 },
+                { "id": 33, "name": "Qualidade Operacional", "nota": 0 },
+                { "id": 34, "name": "Relacionamento / Cliente", "nota": 0 },
+                { "id": 35, "name": "Uniformes", "nota": 0 }
             ]
         };
         this.salvarAuditoria = this.salvarAuditoria.bind(this);

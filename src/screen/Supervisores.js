@@ -24,18 +24,18 @@ export default class Supervisores extends Component {
                 { "id": 9, "name": "Uniformes - uso e conservação", "nota": 0 }
             ],
             supervisores_atendimento: [
-                { "id": 1, "name": "Atendimento a solicitações dos colaboradores", "nota": 0 },
-                { "id": 2, "name": "Condução dos processos", "nota": 0 },
-                { "id": 3, "name": "Conhecimento posto - cronogramsssa e pop", "nota": 0 },
-                { "id": 4, "name": "Fiscalização efetiva geral", "nota": 0 },
-                { "id": 5, "name": "Habilidade de comunicação", "nota": 0 },
-                { "id": 6, "name": "Implantação de processos de melhorias", "nota": 0 },
-                { "id": 7, "name": "Motivação da equipe", "nota": 0 },
-                { "id": 8, "name": "Organização das tarefas - outros departamentos", "nota": 0 },
-                { "id": 9, "name": "Preparação das rotinas", "nota": 0 },
-                { "id": 10, "name": "Qualidade operacional", "nota": 0 },
-                { "id": 11, "name": "Relacionamento com clientes", "nota": 0 },
-                { "id": 12, "name": "S.L.A Cumprimento e Normativas", "nota": 0 }
+                { "id": 10, "name": "Atendimento a solicitações dos colaboradores", "nota": 0 },
+                { "id": 11, "name": "Condução dos processos", "nota": 0 },
+                { "id": 12, "name": "Conhecimento posto - cronogramsssa e pop", "nota": 0 },
+                { "id": 13, "name": "Fiscalização efetiva geral", "nota": 0 },
+                { "id": 14, "name": "Habilidade de comunicação", "nota": 0 },
+                { "id": 15, "name": "Implantação de processos de melhorias", "nota": 0 },
+                { "id": 16, "name": "Motivação da equipe", "nota": 0 },
+                { "id": 17, "name": "Organização das tarefas - outros departamentos", "nota": 0 },
+                { "id": 18, "name": "Preparação das rotinas", "nota": 0 },
+                { "id": 19, "name": "Qualidade operacional", "nota": 0 },
+                { "id": 20, "name": "Relacionamento com clientes", "nota": 0 },
+                { "id": 21, "name": "S.L.A Cumprimento e Normativas", "nota": 0 }
             ]
         };
         this.salvarAuditoria = this.salvarAuditoria.bind(this);

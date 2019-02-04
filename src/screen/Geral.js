@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, TextInput, ScrollView, FlatList, TouchableOpaci
 import Rating from '../components/Rating';
 import moment from 'moment';
 import 'moment/locale/pt-br';
+import XLSX from 'xlsx';
+import File from '../function/File';
 
 export default class Geral extends Component {
 
@@ -39,15 +41,15 @@ export default class Geral extends Component {
                 { "id": 23, "name": "Vestiários", "nota": 0 }
             ],
             geral_equipe: [
-                { "id": 1, "name": "Acessórios/ Equipamentos", "nota": 0 },
-                { "id": 2, "name": "Crachá", "nota": 0 },
-                { "id": 3, "name": "EPI's", "nota": 0 },
-                { "id": 4, "name": "Postura Profissional", "nota": 0 },
-                { "id": 5, "name": "Produtos - Diluição", "nota": 0 },
-                { "id": 6, "name": "Produtos - Gestão de Estoques", "nota": 0 },
-                { "id": 7, "name": "Qualidade Operacional", "nota": 0 },
-                { "id": 8, "name": "Relacionamento / Cliente", "nota": 0 },
-                { "id": 9, "name": "Uniformes", "nota": 0 }
+                { "id": 24, "name": "Acessórios/ Equipamentos", "nota": 0 },
+                { "id": 25, "name": "Crachá", "nota": 0 },
+                { "id": 26, "name": "EPI's", "nota": 0 },
+                { "id": 27, "name": "Postura Profissional", "nota": 0 },
+                { "id": 28, "name": "Produtos - Diluição", "nota": 0 },
+                { "id": 29, "name": "Produtos - Gestão de Estoques", "nota": 0 },
+                { "id": 30, "name": "Qualidade Operacional", "nota": 0 },
+                { "id": 31, "name": "Relacionamento / Cliente", "nota": 0 },
+                { "id": 32, "name": "Uniformes", "nota": 0 }
             ]
         };
         this.salvarAuditoria = this.salvarAuditoria.bind(this);
@@ -67,7 +69,27 @@ export default class Geral extends Component {
             return;
         }
         console.warn(this.state);
+        this.exportFile();
     }
+
+    exportFile = () => {
+        const cliente = this.state.cliente;
+        const data = moment().locale('pt-br').format('DDMMYYYY');
+
+		/* convert AOA back to worksheet */        
+		const ws = XLSX.utils.json_to_sheet(this.state.geral);
+        
+		/* build new workbook */
+		const wb = XLSX.utils.book_new();
+		XLSX.utils.book_append_sheet(wb, ws, "Auditoria");
+
+		/* write file */
+		const wbout = XLSX.write(wb, {type:'binary', bookType:"xlsx"});
+        const fileName = File.getPath() +`${cliente}_${data}_`;
+        const file = `${fileName}`+ "Geral.xlsx";
+        
+        File.generateFile(file, wbout);
+	}
 
     render() {
         return (
