@@ -55,16 +55,16 @@ export default class Geral extends Component {
         this.salvarAuditoria = this.salvarAuditoria.bind(this);
     }
 
-    salvarAuditoria() {        
-        if(this.state.cliente === ''){
+    salvarAuditoria() {
+        if (this.state.cliente === '') {
             ToastAndroid.show('Campo Cliente Obrigatório!', ToastAndroid.LONG);
             return;
         }
-        if(this.state.posto === ''){
+        if (this.state.posto === '') {
             ToastAndroid.show('Campo Posto Obrigatório!', ToastAndroid.LONG);
             return;
         }
-        if(this.state.supervisor === ''){
+        if (this.state.supervisor === '') {
             ToastAndroid.show('Campo Supervisor Obrigatório!', ToastAndroid.LONG);
             return;
         }
@@ -74,22 +74,37 @@ export default class Geral extends Component {
 
     exportFile = () => {
         const cliente = this.state.cliente;
+        const posto = this.state.posto;
+        const supervisor = this.state.supervisor;
         const data = moment().locale('pt-br').format('DDMMYYYY');
 
-		/* convert AOA back to worksheet */        
-		const ws = XLSX.utils.json_to_sheet(this.state.geral);
+        var ws = XLSX.utils.aoa_to_sheet([
+            ["Cliente", `${cliente}`],
+            ["Posto", `${posto}`],
+            ["Supervisor", `${supervisor}`],
+            ["Data", `${data}`]
+        ]);
         
-		/* build new workbook */
-		const wb = XLSX.utils.book_new();
-		XLSX.utils.book_append_sheet(wb, ws, "Auditoria");
+        /* this array controls the column order in the generated sheet */
+        var header = ["id", "name", "nota"];
 
-		/* write file */
-		const wbout = XLSX.write(wb, {type:'binary', bookType:"xlsx"});
-        const fileName = File.getPath() +`${cliente}_${data}_`;
-        const file = `${fileName}`+ "Geral.xlsx";
-        
+        /* add row objects to sheet starting from cell A6 */
+        XLSX.utils.sheet_add_json(ws, this.state.geral, { header: header, origin: "A6" });
+
+        /* append two more rows without header */
+        XLSX.utils.sheet_add_json(ws, this.state.geral_equipe, { header: header, origin: -1, skipHeader: true });
+        /* build new workbook */
+        const wb = XLSX.utils.book_new();
+
+        XLSX.utils.book_append_sheet(wb, ws, "Auditoria");
+
+        /* write file */
+        const wbout = XLSX.write(wb, { type: 'binary', bookType: "xlsx" });
+        const fileName = File.getPath() + `${cliente}_${data}_`;
+        const file = `${fileName}` + "Geral.xlsx";
+
         File.generateFile(file, wbout);
-	}
+    }
 
     render() {
         return (
@@ -107,8 +122,8 @@ export default class Geral extends Component {
                     <TextInput style={{ height: 40 }} value={this.state.supervisor} onChangeText={(text) => this.setState({ supervisor: text })}></TextInput>
                 </View>
                 <View>
-                    <Text style={styles.text_field}>Data:</Text>                    
-                    <TextInput style={{ height: 40 }} value={this.state.data} editable = {false}></TextInput>
+                    <Text style={styles.text_field}>Data:</Text>
+                    <TextInput style={{ height: 40 }} value={this.state.data} editable={false}></TextInput>
                 </View>
                 <View>
                     <FlatList
@@ -116,7 +131,7 @@ export default class Geral extends Component {
                         data={this.state.geral}
                         extraData={this.state}
                         renderItem={({ item, index }) =>
-                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>                            
+                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>
                         }
                     />
                 </View>
@@ -129,7 +144,7 @@ export default class Geral extends Component {
                         data={this.state.geral_equipe}
                         extraData={this.state}
                         renderItem={({ item }) =>
-                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>                            
+                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>
                         }
                     />
                 </View>
@@ -174,7 +189,7 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         backgroundColor: '#00009C',
-        padding: 10,        
+        padding: 10,
         borderRadius: 30,
     },
     textButton: {
