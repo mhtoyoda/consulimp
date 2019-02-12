@@ -68,11 +68,18 @@ export default class Geral extends Component {
             ToastAndroid.show('Campo Supervisor Obrigatório!', ToastAndroid.LONG);
             return;
         }
-        console.warn(this.state);
+
         this.exportFile();
     }
 
     exportFile = () => {
+        var avaliacoes = [
+            { "descricao": "Quantidade de Ótimo", "quantidade": 0, "pontuacao": 0 },
+            { "descricao": "Quantidade de Bom", "quantidade": 0, "pontuacao": 0 },
+            { "descricao": "Quantidade de Regular", "quantidade": 0, "pontuacao": 0 },
+            { "descricao": "Quantidade de Ruim", "quantidade": 0, "pontuacao": 0 },
+        ];
+
         const cliente = this.state.cliente;
         const posto = this.state.posto;
         const supervisor = this.state.supervisor;
@@ -84,7 +91,59 @@ export default class Geral extends Component {
             ["Supervisor", `${supervisor}`],
             ["Data", `${data}`]
         ]);
-        
+
+        var qtde = 0;
+        let list = this.state.geral.concat(this.state.geral_equipe);
+
+        list.map(avaliacao => {
+        if(avaliacao.nota === 1){
+            let listAvaliacoesRuim = avaliacoes.map(item =>
+            {
+                console.warn(item);
+                if(item.descricao === 'Quantidade de Ruim'){
+                    item.quantidade = item.quantidade + 1;                
+                    item.pontuacao = item.quantidade * 30;
+                }
+            });
+            qtde = qtde+1;
+            avaliacoes = listAvaliacoesRuim;
+            return avaliacoes;
+        }else if(avaliacao.nota === 2){
+            let listAvaliacoesRegular = avaliacoes.map(item =>
+            {   
+                if(item.descricao === 'Quantidade de Regular'){
+                    item.quantidade = item.quantidade + 1;                
+                    item.pontuacao = item.quantidade * 50;
+                }
+            });
+            qtde = qtde+1;
+            avaliacoes = listAvaliacoesRegular;
+            return avaliacoes;
+        }else if(avaliacao.nota === 3){
+            let listAvaliacoesBom = avaliacoes.map(item =>
+            {
+                if(item.descricao === 'Quantidade de Bom'){
+                    item.quantidade = item.quantidade + 1;                
+                    item.pontuacao = item.quantidade * 80;
+                }                        
+            });
+            qtde = qtde+1;
+            avaliacoes = listAvaliacoesBom;
+            return avaliacoes;
+        }else if(avaliacao.nota === 4){
+            let listAvaliacoesOtimo = avaliacoes.map(item =>
+            {
+                if(item.descricao === 'Quantidade de Ótimo'){  
+                    item.quantidade = item.quantidade + 1;                
+                    item.pontuacao = item.quantidade * 100;      
+                }    
+            });
+            qtde = qtde+1;
+            avaliacoes = listAvaliacoesOtimo;
+            return avaliacoes;
+        }
+        });
+
         /* this array controls the column order in the generated sheet */
         var header = ["id", "name", "nota"];
 
@@ -93,6 +152,18 @@ export default class Geral extends Component {
 
         /* append two more rows without header */
         XLSX.utils.sheet_add_json(ws, this.state.geral_equipe, { header: header, origin: -1, skipHeader: true });
+
+        var headerAvaliacao = ["descricao", "quantidade", "pontuacao"];
+        XLSX.utils.sheet_add_json(ws, avaliacoes, { header: headerAvaliacao, origin: "A40" });
+
+        console.warn(avaliacoes);
+        var total = avaliacoes.reduce(function (a, b) {
+            return a.pontuacao + b.pontuacao;
+        });
+        // console.warn(total);
+        // console.warn(qtde);
+        // console.warn(qtde === 0 ? 0 : total/qtde);
+
         /* build new workbook */
         const wb = XLSX.utils.book_new();
 
