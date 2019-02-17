@@ -13,29 +13,29 @@ export default class Supervisores extends Component {
             supervisor: '',
             data: moment().locale('pt-br').format('L'),
             supervisores_conhecimentos: [
-                { "id": 1, "name": "Desinfecção e Descontaminação de WC", "nota": 0 },
-                { "id": 2, "name": "EPI's - uso e normas legais", "nota": 0 },
-                { "id": 3, "name": "Equipamentos / Acessórios", "nota": 0 },
-                { "id": 4, "name": "Limpeza Geral", "nota": 0 },
-                { "id": 5, "name": "Limpeza Vidros", "nota": 0 },
-                { "id": 6, "name": "Métodos e Processos Operacionais", "nota": 0 },
-                { "id": 7, "name": "Produtos e Diluições", "nota": 0 },
-                { "id": 8, "name": "Tratamento de Pisos", "nota": 0 },
-                { "id": 9, "name": "Uniformes - uso e conservação", "nota": 0 }
+                { "Id": 1, "Item": "Desinfecção e Descontaminação de WC", "Nota": 0 },
+                { "Id": 2, "Item": "EPI's - uso e normas legais", "Nota": 0 },
+                { "Id": 3, "Item": "Equipamentos / Acessórios", "Nota": 0 },
+                { "Id": 4, "Item": "Limpeza Geral", "Nota": 0 },
+                { "Id": 5, "Item": "Limpeza Vidros", "Nota": 0 },
+                { "Id": 6, "Item": "Métodos e Processos Operacionais", "Nota": 0 },
+                { "Id": 7, "Item": "Produtos e Diluições", "Nota": 0 },
+                { "Id": 8, "Item": "Tratamento de Pisos", "Nota": 0 },
+                { "Id": 9, "Item": "Uniformes - uso e conservação", "Nota": 0 }
             ],
             supervisores_atendimento: [
-                { "id": 10, "name": "Atendimento a solicitações dos colaboradores", "nota": 0 },
-                { "id": 11, "name": "Condução dos processos", "nota": 0 },
-                { "id": 12, "name": "Conhecimento posto - cronogramsssa e pop", "nota": 0 },
-                { "id": 13, "name": "Fiscalização efetiva geral", "nota": 0 },
-                { "id": 14, "name": "Habilidade de comunicação", "nota": 0 },
-                { "id": 15, "name": "Implantação de processos de melhorias", "nota": 0 },
-                { "id": 16, "name": "Motivação da equipe", "nota": 0 },
-                { "id": 17, "name": "Organização das tarefas - outros departamentos", "nota": 0 },
-                { "id": 18, "name": "Preparação das rotinas", "nota": 0 },
-                { "id": 19, "name": "Qualidade operacional", "nota": 0 },
-                { "id": 20, "name": "Relacionamento com clientes", "nota": 0 },
-                { "id": 21, "name": "S.L.A Cumprimento e Normativas", "nota": 0 }
+                { "Id": 10, "Item": "Atendimento a solicitações dos colaboradores", "Nota": 0 },
+                { "Id": 11, "Item": "Condução dos processos", "Nota": 0 },
+                { "Id": 12, "Item": "Conhecimento posto - cronogramsssa e pop", "Nota": 0 },
+                { "Id": 13, "Item": "Fiscalização efetiva geral", "Nota": 0 },
+                { "Id": 14, "Item": "Habilidade de comunicação", "Nota": 0 },
+                { "Id": 15, "Item": "Implantação de processos de melhorias", "Nota": 0 },
+                { "Id": 16, "Item": "Motivação da equipe", "Nota": 0 },
+                { "Id": 17, "Item": "Organização das tarefas - outros departamentos", "Nota": 0 },
+                { "Id": 18, "Item": "Preparação das rotinas", "Nota": 0 },
+                { "Id": 19, "Item": "Qualidade operacional", "Nota": 0 },
+                { "Id": 20, "Item": "Relacionamento com clientes", "Nota": 0 },
+                { "Id": 21, "Item": "S.L.A Cumprimento e Normativas", "Nota": 0 }
             ]
         };
         this.salvarAuditoria = this.salvarAuditoria.bind(this);
@@ -70,11 +70,11 @@ export default class Supervisores extends Component {
                 </View>
                 <View>
                     <FlatList
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={item => item.Id.toString()}
                         data={this.state.supervisores_conhecimentos}
                         extraData={this.state}
                         renderItem={({ item }) =>
-                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>
+                            <Rating name={item.Item} nota={item.Nota} onFinishRating={(rating) => item.Nota = rating}></Rating>
                         }
                     />
                 </View>
@@ -83,11 +83,11 @@ export default class Supervisores extends Component {
                 </View>
                 <View>
                     <FlatList
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={item => item.Id.toString()}
                         data={this.state.supervisores_atendimento}
                         extraData={this.state}
                         renderItem={({ item }) =>
-                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>
+                            <Rating name={item.Item} nota={item.Nota} onFinishRating={(rating) => item.Nota = rating}></Rating>
                         }
                     />
                 </View>

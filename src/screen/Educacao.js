@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TextInput, ScrollView, FlatList, TouchableOpacity, ToastAndroid } from 'react-native';
+import { StyleSheet, View, Text, TextInput, ScrollView, FlatList, TouchableOpacity, ToastAndroId } from 'react-native';
 import Rating from '../components/Rating';
 import moment from 'moment';
 import 'moment/locale/pt-br';
@@ -14,39 +14,39 @@ export default class Educacao extends Component {
             supervisor: '',
             data: moment().locale('pt-br').format('L'),
             educacao: [
-                { "id": 1, "name": "Academia", "nota": 0 },
-                { "id": 2, "name": "Área de Lazer - Pátios", "nota": 0 },
-                { "id": 3, "name": "Banheiros - Limpeza / abastecimento", "nota": 0 },
-                { "id": 4, "name": "Bebedouros", "nota": 0 },
-                { "id": 5, "name": "Capachos", "nota": 0 },
-                { "id": 6, "name": "Cestos de Lixo - comum / seletivo", "nota": 0 },
-                { "id": 7, "name": "Cozinha", "nota": 0 },
-                { "id": 8, "name": "D.M.L", "nota": 0 },
-                { "id": 9, "name": "Elevadores", "nota": 0 },
-                { "id": 10, "name": "Equipamentos de Incêndio", "nota": 0 },
-                { "id": 11, "name": "Escadas", "nota": 0 },
-                { "id": 12, "name": "Guarita", "nota": 0 },
-                { "id": 13, "name": "Hall Social", "nota": 0 },
-                { "id": 14, "name": "Janelas (face interna)", "nota": 0 },
-                { "id": 15, "name": "Móveis", "nota": 0 },
-                { "id": 16, "name": "Paredes", "nota": 0 },
-                { "id": 17, "name": "Piscina", "nota": 0 },
-                { "id": 18, "name": "Pisos", "nota": 0 },
-                { "id": 19, "name": "Playground - Brinquedoteca", "nota": 0 },
-                { "id": 20, "name": "Refeitório", "nota": 0 },
-                { "id": 21, "name": "Sala de Aula", "nota": 0 },
-                { "id": 22, "name": "Vestiários", "nota": 0 }
+                { "Id": 1, "Item": "Academia", "Nota": 0 },
+                { "Id": 2, "Item": "Área de Lazer - Pátios", "Nota": 0 },
+                { "Id": 3, "Item": "Banheiros - Limpeza / abastecimento", "Nota": 0 },
+                { "Id": 4, "Item": "Bebedouros", "Nota": 0 },
+                { "Id": 5, "Item": "Capachos", "Nota": 0 },
+                { "Id": 6, "Item": "Cestos de Lixo - comum / seletivo", "Nota": 0 },
+                { "Id": 7, "Item": "Cozinha", "Nota": 0 },
+                { "Id": 8, "Item": "D.M.L", "Nota": 0 },
+                { "Id": 9, "Item": "Elevadores", "Nota": 0 },
+                { "Id": 10, "Item": "Equipamentos de Incêndio", "Nota": 0 },
+                { "Id": 11, "Item": "Escadas", "Nota": 0 },
+                { "Id": 12, "Item": "Guarita", "Nota": 0 },
+                { "Id": 13, "Item": "Hall Social", "Nota": 0 },
+                { "Id": 14, "Item": "Janelas (face interna)", "Nota": 0 },
+                { "Id": 15, "Item": "Móveis", "Nota": 0 },
+                { "Id": 16, "Item": "Paredes", "Nota": 0 },
+                { "Id": 17, "Item": "Piscina", "Nota": 0 },
+                { "Id": 18, "Item": "Pisos", "Nota": 0 },
+                { "Id": 19, "Item": "Playground - Brinquedoteca", "Nota": 0 },
+                { "Id": 20, "Item": "Refeitório", "Nota": 0 },
+                { "Id": 21, "Item": "Sala de Aula", "Nota": 0 },
+                { "Id": 22, "Item": "Vestiários", "Nota": 0 }
             ],
             educacao_equipe: [
-                { "id": 23, "name": "Acessórios/ Equipamentos", "nota": 0 },
-                { "id": 24, "name": "Crachá", "nota": 0 },
-                { "id": 25, "name": "EPI's", "nota": 0 },
-                { "id": 26, "name": "Produtos - Diluição", "nota": 0 },
-                { "id": 27, "name": "Produtos - Gestão de Estoques", "nota": 0 },
-                { "id": 28, "name": "Postura Profissional", "nota": 0 },
-                { "id": 29, "name": "Qualidade Operacional", "nota": 0 },
-                { "id": 30, "name": "Relacionamento / Cliente", "nota": 0 },
-                { "id": 31, "name": "Uniformes", "nota": 0 }
+                { "Id": 23, "Item": "Acessórios/ Equipamentos", "Nota": 0 },
+                { "Id": 24, "Item": "Crachá", "Nota": 0 },
+                { "Id": 25, "Item": "EPI's", "Nota": 0 },
+                { "Id": 26, "Item": "Produtos - Diluição", "Nota": 0 },
+                { "Id": 27, "Item": "Produtos - Gestão de Estoques", "Nota": 0 },
+                { "Id": 28, "Item": "Postura Profissional", "Nota": 0 },
+                { "Id": 29, "Item": "Qualidade Operacional", "Nota": 0 },
+                { "Id": 30, "Item": "Relacionamento / Cliente", "Nota": 0 },
+                { "Id": 31, "Item": "Uniformes", "Nota": 0 }
             ]
         };
         this.salvarAuditoria = this.salvarAuditoria.bind(this);
@@ -89,11 +89,11 @@ export default class Educacao extends Component {
                 </View>
                 <View>
                     <FlatList
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={item => item.Id.toString()}
                         data={this.state.educacao}
                         extraData={this.state}
                         renderItem={({ item }) =>
-                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>
+                            <Rating name={item.Item} nota={item.Nota} onFinishRating={(rating) => item.Nota = rating}></Rating>
                         }
                     />
                 </View>
@@ -102,11 +102,11 @@ export default class Educacao extends Component {
                 </View>
                 <View>
                     <FlatList
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={item => item.Id.toString()}
                         data={this.state.educacao_equipe}
                         extraData={this.state}
                         renderItem={({ item }) =>
-                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>
+                            <Rating name={item.Item} nota={item.Nota} onFinishRating={(rating) => item.Nota = rating}></Rating>
                         }
                     />
                 </View>

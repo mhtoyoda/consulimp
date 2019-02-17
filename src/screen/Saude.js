@@ -14,43 +14,43 @@ export default class Saude extends Component {
             supervisor: '',
             data: moment().locale('pt-br').format('L'),
             saude: [
-                { "id": 1, "name": "Administração", "nota": 0 },
-                { "id": 2, "name": "Área Interna", "nota": 0 },
-                { "id": 3, "name": "Área Externa", "nota": 0 },
-                { "id": 4, "name": "Banheiros - limpeza / abastecimento", "nota": 0 },
-                { "id": 5, "name": "Berçário", "nota": 0 },
-                { "id": 6, "name": "C.M.E", "nota": 0 },
-                { "id": 7, "name": "Centro Cirúrgico", "nota": 0 },
-                { "id": 8, "name": "Centro Obstétrico", "nota": 0 },
-                { "id": 9, "name": "Cestos de Lixo", "nota": 0 },
-                { "id": 10, "name": "Consultórios", "nota": 0 },
-                { "id": 11, "name": "D.M.L", "nota": 0 },
-                { "id": 12, "name": "Enfermarias", "nota": 0 },
-                { "id": 13, "name": "Equipamentos de Incêndio", "nota": 0 },
-                { "id": 14, "name": "Expurgo", "nota": 0 },
-                { "id": 15, "name": "Farmácia", "nota": 0 },
-                { "id": 16, "name": "Janelas", "nota": 0 },
-                { "id": 17, "name": "Limpeza Concorrente", "nota": 0 },
-                { "id": 18, "name": "Limpeza Terminal", "nota": 0 },
-                { "id": 19, "name": "Necrotério", "nota": 0 },
-                { "id": 20, "name": "Paredes", "nota": 0 },
-                { "id": 21, "name": "Pisos", "nota": 0 },
-                { "id": 22, "name": "Postos Enfermagem", "nota": 0 },
-                { "id": 23, "name": "Pronto Atendimento", "nota": 0 },
-                { "id": 24, "name": "Quartos", "nota": 0 },
-                { "id": 25, "name": "UTI - Adulto", "nota": 0 },
-                { "id": 26, "name": "UTI - NEO", "nota": 0 }
+                { "Id": 1, "Item": "Administração", "Nota": 0 },
+                { "Id": 2, "Item": "Área Interna", "Nota": 0 },
+                { "Id": 3, "Item": "Área Externa", "Nota": 0 },
+                { "Id": 4, "Item": "Banheiros - limpeza / abastecimento", "Nota": 0 },
+                { "Id": 5, "Item": "Berçário", "Nota": 0 },
+                { "Id": 6, "Item": "C.M.E", "Nota": 0 },
+                { "Id": 7, "Item": "Centro Cirúrgico", "Nota": 0 },
+                { "Id": 8, "Item": "Centro Obstétrico", "Nota": 0 },
+                { "Id": 9, "Item": "Cestos de Lixo", "Nota": 0 },
+                { "Id": 10, "Item": "Consultórios", "Nota": 0 },
+                { "Id": 11, "Item": "D.M.L", "Nota": 0 },
+                { "Id": 12, "Item": "Enfermarias", "Nota": 0 },
+                { "Id": 13, "Item": "Equipamentos de Incêndio", "Nota": 0 },
+                { "Id": 14, "Item": "Expurgo", "Nota": 0 },
+                { "Id": 15, "Item": "Farmácia", "Nota": 0 },
+                { "Id": 16, "Item": "Janelas", "Nota": 0 },
+                { "Id": 17, "Item": "Limpeza Concorrente", "Nota": 0 },
+                { "Id": 18, "Item": "Limpeza Terminal", "Nota": 0 },
+                { "Id": 19, "Item": "Necrotério", "Nota": 0 },
+                { "Id": 20, "Item": "Paredes", "Nota": 0 },
+                { "Id": 21, "Item": "Pisos", "Nota": 0 },
+                { "Id": 22, "Item": "Postos Enfermagem", "Nota": 0 },
+                { "Id": 23, "Item": "Pronto Atendimento", "Nota": 0 },
+                { "Id": 24, "Item": "Quartos", "Nota": 0 },
+                { "Id": 25, "Item": "UTI - Adulto", "Nota": 0 },
+                { "Id": 26, "Item": "UTI - NEO", "Nota": 0 }
             ],
             saude_equipe: [
-                { "id": 27, "name": "Acessórios/ Equipamentos", "nota": 0 },
-                { "id": 28, "name": "Crachá", "nota": 0 },
-                { "id": 29, "name": "EPI's", "nota": 0 },
-                { "id": 30, "name": "Postura Profissional", "nota": 0 },
-                { "id": 31, "name": "Produtos - Diluição", "nota": 0 },
-                { "id": 32, "name": "Produtos - Gestão de Estoques", "nota": 0 },
-                { "id": 33, "name": "Qualidade Operacional", "nota": 0 },
-                { "id": 34, "name": "Relacionamento / Cliente", "nota": 0 },
-                { "id": 35, "name": "Uniformes", "nota": 0 }
+                { "Id": 27, "Item": "Acessórios/ Equipamentos", "Nota": 0 },
+                { "Id": 28, "Item": "Crachá", "Nota": 0 },
+                { "Id": 29, "Item": "EPI's", "Nota": 0 },
+                { "Id": 30, "Item": "Postura Profissional", "Nota": 0 },
+                { "Id": 31, "Item": "Produtos - Diluição", "Nota": 0 },
+                { "Id": 32, "Item": "Produtos - Gestão de Estoques", "Nota": 0 },
+                { "Id": 33, "Item": "Qualidade Operacional", "Nota": 0 },
+                { "Id": 34, "Item": "Relacionamento / Cliente", "Nota": 0 },
+                { "Id": 35, "Item": "Uniformes", "Nota": 0 }
             ]
         };
         this.salvarAuditoria = this.salvarAuditoria.bind(this);
@@ -69,7 +69,7 @@ export default class Saude extends Component {
             ToastAndroid.show('Campo Supervisor Obrigatório!', ToastAndroid.LONG);
             return;
         }
-        console.warn(this.state);
+
     }
 
     render() {
@@ -93,11 +93,11 @@ export default class Saude extends Component {
                 </View>
                 <View>
                     <FlatList
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={item => item.Id.toString()}
                         data={this.state.saude}
                         extraData={this.state}
                         renderItem={({ item }) =>
-                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>
+                            <Rating name={item.Item} nota={item.Nota} onFinishRating={(rating) => item.Nota = rating}></Rating>
                         }
                     />
                 </View>
@@ -106,11 +106,11 @@ export default class Saude extends Component {
                 </View>
                 <View>
                     <FlatList
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={item => item.Id.toString()}
                         data={this.state.saude_equipe}
                         extraData={this.state}
                         renderItem={({ item }) =>
-                            <Rating name={item.name} nota={item.nota} onFinishRating={(rating) => item.nota = rating}></Rating>
+                            <Rating name={item.Item} nota={item.Nota} onFinishRating={(rating) => item.Nota = rating}></Rating>
                         }
                     />
                 </View>
