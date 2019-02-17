@@ -3,6 +3,9 @@ import { StyleSheet, View, Text, TextInput, ScrollView, FlatList, TouchableOpaci
 import Rating from '../components/Rating';
 import moment from 'moment';
 import 'moment/locale/pt-br';
+import XLSX from 'xlsx';
+import File from '../function/File';
+import Calculo from '../function/Calculo';
 
 export default class Supervisores extends Component {
 
@@ -50,7 +53,48 @@ export default class Supervisores extends Component {
             ToastAndroid.show('Campo Supervisor Obrigatório!', ToastAndroid.LONG);
             return;
         }
-        console.warn(this.state);
+        this.exportFile();
+    }
+
+    exportFile = () => {
+        const empresa = this.state.empresa;
+        const supervisor = this.state.supervisor;
+        const data = moment().locale('pt-br').format('DDMMYYYY');
+        
+        var ws = XLSX.utils.aoa_to_sheet([
+            ["Empresa", `${empresa}`],
+            ["Supervisor", `${supervisor}`],
+            ["Data", `${data.substring(0,2)}/${data.substring(2,4)}/${data.substring(4,8)}`]
+        ]);
+
+        var list = this.state.supervisores_conhecimentos.concat(this.state.supervisores_atendimento);
+        var qtde = 0;
+        var avaliacoes = Calculo.generateList(list);
+        avaliacoes = Calculo.completeList(avaliacoes);
+        var averageAvaliation = Calculo.sumaryList(avaliacoes);
+        list = Calculo.formatNota(list);
+
+        /* this array controls the column order in the generated sheet */
+        var header = ["Id", "Item", "Nota"];
+
+        /* add row objects to sheet starting from cell A6 */
+        XLSX.utils.sheet_add_json(ws, list, { header: header, origin: "A5" });
+
+        var headerAvaliacao = ["Item", "Quantidade", "Ponto"];
+        XLSX.utils.sheet_add_json(ws, avaliacoes, { header: headerAvaliacao, origin: "A28" });
+        XLSX.utils.sheet_add_aoa(ws, [['Média'], [averageAvaliation]], {origin: "D28"})        
+
+        /* build new workbook */
+        const wb = XLSX.utils.book_new();
+
+        XLSX.utils.book_append_sheet(wb, ws, "Supervisores");
+
+        /* write file */
+        const wbout = XLSX.write(wb, { type: 'binary', bookType: "xlsx" });
+        const fileName = File.getPath() + `${empresa}_${data}_`;
+        const file = `${fileName}` + "Supervisores.xlsx";
+
+        File.generateFile(file, wbout);
     }
 
     render() {
