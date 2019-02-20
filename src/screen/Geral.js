@@ -84,7 +84,7 @@ export default class Geral extends Component {
             ["Posto", `${posto}`],
             ["Supervisor", `${supervisor}`],
             ["Data", `${data.substring(0,2)}/${data.substring(2,4)}/${data.substring(4,8)}`]
-        ]);
+        ], {cellStyles: true});
 
         var list = this.state.geral.concat(this.state.geral_equipe);
         var qtde = 0;
@@ -98,7 +98,7 @@ export default class Geral extends Component {
 
         /* add row objects to sheet starting from cell A6 */
         XLSX.utils.sheet_add_json(ws, list, { header: header, origin: "A6" });
-
+        ws['!merges'] = [ XLSX.utils.decode_range("D41:D45") ];
         var headerAvaliacao = ["Item", "Quantidade", "Ponto"];
         XLSX.utils.sheet_add_json(ws, avaliacoes, { header: headerAvaliacao, origin: "A40" });
         XLSX.utils.sheet_add_aoa(ws, [['Média'], [averageAvaliation]], {origin: "D40"})        
@@ -113,7 +113,7 @@ export default class Geral extends Component {
         const fileName = File.getPath() + `${cliente}_${data}_`;
         const file = `${fileName}` + "Geral.xlsx";
 
-        File.generateFile(file, wbout);
+        File.generateFile(file, wbout);        
     }
 
     render() {
