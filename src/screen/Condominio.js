@@ -83,7 +83,7 @@ export default class Condominio extends Component {
             ["Posto", `${posto}`],
             ["Supervisor", `${supervisor}`],
             ["Data", `${data.substring(0,2)}/${data.substring(2,4)}/${data.substring(4,8)}`]
-        ]);
+        ], {cellStyles: true});
 
         var list = this.state.condominios.concat(this.state.condominios_equipe);
         var qtde = 0;
@@ -97,6 +97,7 @@ export default class Condominio extends Component {
 
         /* add row objects to sheet starting from cell A6 */
         XLSX.utils.sheet_add_json(ws, list, { header: header, origin: "A6" });
+        ws['!merges'] = [ XLSX.utils.decode_range("D41:D45") ];
 
         var headerAvaliacao = ["Item", "Quantidade", "Ponto"];
         XLSX.utils.sheet_add_json(ws, avaliacoes, { header: headerAvaliacao, origin: "A40" });

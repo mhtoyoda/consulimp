@@ -65,7 +65,7 @@ export default class Supervisores extends Component {
             ["Empresa", `${empresa}`],
             ["Supervisor", `${supervisor}`],
             ["Data", `${data.substring(0,2)}/${data.substring(2,4)}/${data.substring(4,8)}`]
-        ]);
+        ], {cellStyles: true});
 
         var list = this.state.supervisores_conhecimentos.concat(this.state.supervisores_atendimento);
         var qtde = 0;
@@ -79,6 +79,7 @@ export default class Supervisores extends Component {
 
         /* add row objects to sheet starting from cell A6 */
         XLSX.utils.sheet_add_json(ws, list, { header: header, origin: "A5" });
+        ws['!merges'] = [ XLSX.utils.decode_range("D29:D33") ];
 
         var headerAvaliacao = ["Item", "Quantidade", "Ponto"];
         XLSX.utils.sheet_add_json(ws, avaliacoes, { header: headerAvaliacao, origin: "A28" });
