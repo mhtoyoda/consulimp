@@ -9,8 +9,8 @@ import Calculo from '../function/Calculo';
 
 export default class Supervisores extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             empresa: '',
             supervisor: '',
@@ -95,7 +95,7 @@ export default class Supervisores extends Component {
         const fileName = File.getPath() + `${empresa}_${data}_`;
         const file = `${fileName}` + "Supervisores.xlsx";
 
-        File.generateFile(file, wbout);
+        File.generateFile(file, wbout, this.props);
     }
 
     render() {

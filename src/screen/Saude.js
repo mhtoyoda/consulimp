@@ -9,8 +9,8 @@ import Calculo from '../function/Calculo';
 
 export default class Saude extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             cliente: '',
             posto: '',
@@ -117,7 +117,7 @@ export default class Saude extends Component {
         const fileName = File.getPath() + `${cliente}_${data}_`;
         const file = `${fileName}` + "Saude.xlsx";
 
-        File.generateFile(file, wbout);
+        File.generateFile(file, wbout, this.props);
     }
 
     render() {

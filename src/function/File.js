@@ -17,13 +17,16 @@ const File = {
         })
     },
 
-    generateFile: (file, wbout) => {
+    generateFile: (file, wbout, props) => {
         exists(path).then((result) => {
             if (result === false) {
                 mkdir(path);
             }
             writeFile(file, output(wbout), 'ascii').then((res) => {
                 ToastAndroid.show('Arquivo gerado com sucesso!', ToastAndroid.LONG);
+                setTimeout(() => {
+                    props.navigation.navigate('Home');
+                }, 5000);
             }).catch((err) => {
                 ToastAndroid.show(`Ocorreu um erro ao gerar o Arquivo! - ${err.message}`, ToastAndroid.LONG);
             })

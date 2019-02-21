@@ -9,8 +9,8 @@ import Calculo from '../function/Calculo';
 
 export default class Geral extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             cliente: '',
             posto: '',
@@ -78,17 +78,17 @@ export default class Geral extends Component {
         const posto = this.state.posto;
         const supervisor = this.state.supervisor;
         const data = moment().locale('pt-br').format('DDMMYYYY');
-        
+
         var ws = XLSX.utils.aoa_to_sheet([
             ["Cliente", `${cliente}`],
             ["Posto", `${posto}`],
             ["Supervisor", `${supervisor}`],
-            ["Data", `${data.substring(0,2)}/${data.substring(2,4)}/${data.substring(4,8)}`]
-        ], {cellStyles: true});
+            ["Data", `${data.substring(0, 2)}/${data.substring(2, 4)}/${data.substring(4, 8)}`]
+        ], { cellStyles: true });
 
         var list = this.state.geral.concat(this.state.geral_equipe);
         var qtde = 0;
-        var avaliacoes = Calculo.generateList(list);        
+        var avaliacoes = Calculo.generateList(list);
         avaliacoes = Calculo.completeList(avaliacoes);
         var averageAvaliation = Calculo.sumaryList(avaliacoes);
         list = Calculo.formatNota(list);
@@ -98,10 +98,11 @@ export default class Geral extends Component {
 
         /* add row objects to sheet starting from cell A6 */
         XLSX.utils.sheet_add_json(ws, list, { header: header, origin: "A6" });
-        ws['!merges'] = [ XLSX.utils.decode_range("D41:D45") ];
+        ws['!merges'] = [XLSX.utils.decode_range("D41:D45")];
+        ws['B1'].s = { font: { sz: 30 } };
         var headerAvaliacao = ["Item", "Quantidade", "Ponto"];
         XLSX.utils.sheet_add_json(ws, avaliacoes, { header: headerAvaliacao, origin: "A40" });
-        XLSX.utils.sheet_add_aoa(ws, [['Média'], [averageAvaliation]], {origin: "D40"})        
+        XLSX.utils.sheet_add_aoa(ws, [['Média'], [averageAvaliation]], { origin: "D40" })
 
         /* build new workbook */
         const wb = XLSX.utils.book_new();
@@ -113,7 +114,7 @@ export default class Geral extends Component {
         const fileName = File.getPath() + `${cliente}_${data}_`;
         const file = `${fileName}` + "Geral.xlsx";
 
-        File.generateFile(file, wbout);        
+        File.generateFile(file, wbout, this.props);        
     }
 
     render() {
