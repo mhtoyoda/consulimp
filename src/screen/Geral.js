@@ -100,7 +100,7 @@ export default class Geral extends Component {
         /* add row objects to sheet starting from cell A6 */
         XLSX.utils.sheet_add_json(ws, list, { header: header, origin: "A6" });
         ws['!merges'] = [XLSX.utils.decode_range("D41:D45")];
-        ws['B1'].s = { font: { sz: 30 } };
+        
         var headerAvaliacao = ["Item", "Quantidade", "Ponto"];
         XLSX.utils.sheet_add_json(ws, avaliacoes, { header: headerAvaliacao, origin: "A40" });
         XLSX.utils.sheet_add_aoa(ws, [['Média'], [averageAvaliation]], { origin: "D40" })
